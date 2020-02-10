@@ -16,7 +16,7 @@ function FilterForm(props) {
     return (
       <form className="search">
         <div className="form-group">
-          <label htmlFor="name">Filter by Name: </label>
+          <label htmlFor="name">Filter by First Name: </label>
           <input
             value={props.search}
             onChange={props.onChange}
