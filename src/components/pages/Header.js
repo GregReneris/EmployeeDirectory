@@ -1,21 +1,47 @@
 import React from "react";
 import Row from "./Row";
-import Col from "./Col";
-import Card from "./Card";
 import Container from "./Container"
+// import CardBtn from "./CardBtn";
+// import SortBtn from "./CardBtn";
 
-function Header () { 
+function Header () {
+  
+
+  // handleOnClick = event => {
+  //   event.preventDefault();
+  //   API.getDogsOfBreed(this.state.search)
+  //     .then(res => {
+  //       if (res.data.status === "error") {
+  //         throw new Error(res.data.message);
+  //       }
+  //       this.setState({ results: res.data.message, error: "" });
+  //     })
+  //     .catch(err => this.setState({ error: err.message }));
+  // };
+
+
+
+
+
+
+
+
+
+  
+
+
   return (
     <div>
     <Container>
     <Row>
    
+{/*     
+    <div>
+      <div className="alert alert-success fade in">I am the header</div>
+    </div> */}
+
     </Row>
   </Container>
-    
-    <div>
-      <div className="alert alert-success fade in">Yay! That Pup Liked You Too!!!</div>
-    </div>
     </div>
   );
  }

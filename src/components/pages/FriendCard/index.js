@@ -3,32 +3,32 @@ import "./style.css";
 
           function FriendCard(props) {
 
-            function deleteMe(){
-              props.handleDelete(props.id)
-            }
+            // function deleteMe(){
+            //   props.handleDelete(props.id)
+            // }
 
             return (
               <div className="card">
                 <div className="img-container">
-                  <img alt={props.firstname} src={props.picture.medium} />
+                  <img alt={props.firstname} src={props.picture} />
                 </div>
                 <div className="content">
                   <ul>
                     <li>
-                      <strong>Name:</strong> {props.firstname}{props.lastname}
+                      <strong>Name:</strong> {props.firstname} {props.lastname}
                     </li>
                     <li>
                       <strong>Email:</strong> {props.email}
                     </li>
                     <li>
-                      <strong>Location:</strong> {props.location.city}
+                      <strong>Location:</strong> {props.location}
                     </li>
                     <li>
                       <strong>Phone:</strong> {props.cell}
                     </li>
                   </ul>
                 </div>
-                <span className="remove" onClick={deleteMe}>𝘅</span>  
+                {/* <span className="remove" onClick={deleteMe}>𝘅</span>   */}
               </div>
             );
           }

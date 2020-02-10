@@ -1,7 +1,5 @@
 import React from "react";
-import Row from "./Row";
-import Col from "./Col";
-import Container from "./Container"
+
 
 // key={peopleData.id} firstname={People.results.name.first} lastname={People.results.name.last} email={People.results.email} picture={People.results.picture.medium}/>)}
 
