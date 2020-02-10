@@ -24,10 +24,6 @@ class Body extends React.Component {
     sorted: false,
   };
 
-
-
-
-
   componentDidMount() {
     API.search()
       .then(res => { this.setState({results: res.data.results});} /* this.setState({ peoples: res.data.results })*/ )
@@ -37,7 +33,7 @@ class Body extends React.Component {
   results2People = () => {
     let peoples = [...this.state.results];
     
-    console.log("Sprt " + this.state.filter);
+    console.log("Hello " + this.state.filter);
     if(this.state.filter > ""){
       let filter = this.state.filter;
       peoples = peoples.filter(person => {
@@ -71,15 +67,6 @@ class Body extends React.Component {
   handleFormSubmit = event => {
     event.preventDefault();
     console.log("formSubmit Works!");
-
-    // API.getDogsOfBreed(this.state.search)
-    //   .then(res => {
-    //     if (res.data.status === "error") {
-    //       throw new Error(res.data.message);
-    //     }
-    //     this.setState({ results: res.data.message, error: "" });
-    //   })
-    //   .catch(err => this.setState({ error: err.message }));
   };
 
 
@@ -89,24 +76,6 @@ class Body extends React.Component {
     this.setState({sorted : true})
   
   };
-
-
-
-    // API.getDogsOfBreed(this.state.search)
-    //   .then(res => {
-    //     if (res.data.status === "error") {
-    //       throw new Error(res.data.message);
-    //     }
-    //     this.setState({ results: res.data.message, error: "" });
-    //   })
-    //   .catch(err => this.setState({ error: err.message }));
-  
-
-
-
-
-
-
 
   render() {
     console.log(this.state.peoples);
@@ -118,42 +87,25 @@ class Body extends React.Component {
       <div>
         <Header>
         </Header>
-
-
-
-
-
-
         <Wrapper>
           <Container>
         <div>
           <Row>
             <SortBtn
               onClick={this.handleOnClick}
-
             >
             </SortBtn>
-
-
-
           </Row>
         </div>
-
         <div>
           <Row>
             <FilterForm 
               onChange={this.handleInputChange}  
               onSubmit={this.handleFormSubmit}
-            
-            
             />
-            
-
           </Row>
         </div>
-
             <Row>
-
               <h1 className="title">Peoples List</h1>
               {peoples.map((peoples, index) => (
                 <FriendCard
@@ -166,7 +118,6 @@ class Body extends React.Component {
                   cell={peoples.cell}
                 />
               ))}
-
             </Row>
           </Container>
         </Wrapper>
