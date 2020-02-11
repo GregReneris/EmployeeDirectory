@@ -26,39 +26,49 @@ class Body extends React.Component {
 
   componentDidMount() {
     API.search()
-      .then(res => { this.setState({results: res.data.results});} /* this.setState({ peoples: res.data.results })*/ )
+      .then(res => { this.setState({results: res.data.results, peoples: res.data.results});} /* this.setState({ peoples: res.data.results })*/ )
       .catch(err => console.log(err));
   };
 
-  results2People = () => {
-    let peoples = [...this.state.results];
+  // results2People = () => {
+  //   let peoples = [...this.state.results];
     
-    console.log("Hello " + this.state.filter);
-    if(this.state.filter > ""){
-      let filter = this.state.filter;
+  //   console.log("Hello " + this.state.filter);
+  //   if(this.state.filter > ""){
+  //     let filter = this.state.filter;
+  //     peoples = peoples.filter(person => {
+  //       let name = person.name.first.toLowerCase();
+  //       return name.startsWith(filter);
+  //     })
+  //   }
+    
+
+  //   if (this.state.sorted){
+  //     peoples.sort( (a,b) => {
+  //       a = a.name.first.toLowerCase()+" "+ a.name.last.toLowerCase();
+  //       b = b.name.first.toLowerCase()+" "+ b.name.last.toLowerCase();
+  //       return (a > b ? 1 : (b > a ? -1 : 0));
+  //     })
+  //   }
+
+  // //  this.setState({peoples: peoples})
+  //  return peoples;
+  // } 
+
+  handleInputChange = event => {
+    event.preventDefault()
+      
+
+    // adding filter here:
+    let filter = event.target.value.toLowerCase();
+    let peoples = [...this.state.results];
+    if(filter > ""){
       peoples = peoples.filter(person => {
         let name = person.name.first.toLowerCase();
         return name.startsWith(filter);
       })
     }
-    
-
-    if (this.state.sorted){
-      peoples.sort( (a,b) => {
-        a = a.name.first.toLowerCase()+" "+ a.name.last.toLowerCase();
-        b = b.name.first.toLowerCase()+" "+ b.name.last.toLowerCase();
-        return (a > b ? 1 : (b > a ? -1 : 0));
-      })
-    }
-
-   // this.setState({peoples: peoples})
-   return peoples;
-  } 
-
-  handleInputChange = event => {
-    event.preventDefault()
-    // console.log ("input is changing "+ event.target.value);
-      this.setState({ filter: event.target.value.toLowerCase() });
+    this.setState({ filter: filter, peoples:peoples });
 
     
   };
@@ -73,14 +83,38 @@ class Body extends React.Component {
   handleOnClick = event => {
     event.preventDefault();
     console.log("I'm running ths button");
-    this.setState({sorted : true})
-  
+
+    function sortStuff(v) {
+      v = [...v]
+      v.sort( (a,b) => {
+        a = a.name.first.toLowerCase()+" "+ a.name.last.toLowerCase();
+        b = b.name.first.toLowerCase()+" "+ b.name.last.toLowerCase();
+        return (a > b ? 1 : (b > a ? -1 : 0));
+      })
+      return v;
+    }
+
+    let peoples = sortStuff(this.state.peoples)
+    let results = sortStuff(this.state.results)
+
+    // let peoples = [...this.state.peoples]
+    // peoples.sort( (a,b) => {
+    //   a = a.name.first.toLowerCase()+" "+ a.name.last.toLowerCase();
+    //   b = b.name.first.toLowerCase()+" "+ b.name.last.toLowerCase();
+    //   return (a > b ? 1 : (b > a ? -1 : 0));
+    // })
+
+    // let results = [...this.state.results]
+    // results.sort( (a,b) => {
+    //   a = a.name.first.toLowerCase()+" "+ a.name.last.toLowerCase();
+    //   b = b.name.first.toLowerCase()+" "+ b.name.last.toLowerCase();
+    //   return (a > b ? 1 : (b > a ? -1 : 0));
+    // })
+
+    this.setState({sorted : true, peoples : peoples, results:results})
   };
 
   render() {
-    console.log(this.state.peoples);
-
-   let peoples = this.results2People();
     return (
 
 
@@ -107,7 +141,7 @@ class Body extends React.Component {
         </div>
             <Row>
               <h1 className="title">Peoples List</h1>
-              {peoples.map((peoples, index) => (
+              {this.state.peoples.map((peoples, index) => (
                 <FriendCard
                   key={peoples.login.uuid}
                   firstname={peoples.name.first}
